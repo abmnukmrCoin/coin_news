@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #2A0648;
+            background: transparent;
             margin: 0;
             padding: 0;
             color: white;
@@ -54,9 +54,9 @@
         }
 
         .main-title {
-            background-color: #A366FF;
-            padding: 30px;
-            border-radius: 10px;
+            background-color: #512880;
+            padding: 80px;
+            border-radius: 40px;
             text-align: center;
             font-size: 2em;
             margin-bottom: 30px;
@@ -71,6 +71,7 @@
             margin-top: 10px;
             color: #d4c3ff;
         }
+
 
         .article-image {
             text-align: center;
@@ -98,7 +99,7 @@
             width: 100%;
             position: relative;
             overflow: hidden;
-            border-radius: 30px;
+            border-radius: 40px;
             max-width: 1200px;
             margin: auto;
         }
@@ -111,14 +112,13 @@
 
         .carousel-item {
             min-width: 100%;
-            padding: 12px;
             box-sizing: border-box;
-            border-radius: 24px;
+            border-radius: 40px;
         }
 
         .carousel-item img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 40px;
         }
 
         .carousel-item h3 {
@@ -175,7 +175,7 @@
 
         .sub-carousel-item img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 40px;
         }
 
         .sub-carousel-item h3 {
@@ -183,14 +183,12 @@
             font-size: 1.5em;
         }
 
-        .sub-carousel-item p {
-            color: #c1b4e2;
-            font-size: 1em;
-        }
+
+
 
         .news-listrt {
-            background-color: #4C008D;
-            border-radius: 20px;
+            background-color: #250057;
+            border-radius: 40px;
             padding: 20px;
             margin-bottom: 20px;
         }
@@ -253,6 +251,53 @@
                 font-size: 1em;
             }
         }
+
+        @font-face {
+            font-family: 'HeadingFont';
+            /*a name to be used later*/
+            src: url('./fonts/DentonTest-Medium.otf');
+            /*URL to font*/
+        }
+
+        @font-face {
+            font-family: 'Gilori';
+            /*a name to be used later*/
+            src: url('./fonts//Gilroy-Medium.ttf');
+            /*URL to font*/
+        }
+
+        .title-c {
+            font-family: 'HeadingFont';
+            font-size: 56px;
+            line-height: 1.2;
+        }
+
+        .main-text {
+            font-family: 'Gilori';
+            font-size: 32px;
+        }
+
+        .sub-carousel-item h5 {
+            font-family: 'Gilori';
+            font-size: 32px;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .sub-carousel-item p {
+            font-family: 'Gilori';
+            font-size: 20px;
+            line-height: 1.2;
+            color: rgb(245, 229, 255);
+
+        }
+
+        .title-head {
+            font-family: 'HeadingFont';
+            font-style: bold;
+            font-size: 48px;
+            line-height: 1.2;
+        }
     </style>
 </head>
 
@@ -299,7 +344,7 @@
                         carouselItem.className = 'carousel-item';
                         carouselItem.innerHTML = `
                         <div class="main-title">
-                            <h3>${item?.title}</h3>
+                            <h3 class="title-c">${item?.title}</h3>
                             <p class="main-text">${item?.text}</p>
                             <div class="article-image">
                                <a href=${item.news_url}><img class="img-c" src="${item.image_url}" alt="Cloud Mining Image"></a>
@@ -318,7 +363,7 @@
                     if (item?.sub_news) {
                         let news = document.createElement('div');
                         news.innerHTML = `
-                        <h1>${item?.sub_news ? item?.source_name : ""}</h1>
+                        <h1 class="title-head">${item?.sub_news ? item?.source_name : ""}</h1>
                         <div class="news-listrt">
                         ${item?.sub_news ? renderNewsList(item?.sub_news) : ""}
                         </div>
