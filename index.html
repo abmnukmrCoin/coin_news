@@ -50,7 +50,7 @@
         }
 
         .content {
-            padding: 0 48px 20px 48px;
+            padding: 0 24px 20px 24px;
         }
 
         .main-title {
@@ -74,17 +74,16 @@
 
         .article-image {
             text-align: center;
-
         }
 
         .article-image img {
             width: 100%;
-
             border-radius: 30px;
         }
 
         .img-c {
-            width: 680px;
+            width: 100%;
+            height: auto;
             height: 460px;
             border-radius: 24px;
         }
@@ -93,15 +92,15 @@
             margin-top: 40px;
             text-align: center;
         }
-    </style>
 
-    <style>
+        /* Carousel Styles */
         .carousel-container {
             width: 100%;
             position: relative;
             overflow: hidden;
             border-radius: 30px;
-
+            max-width: 1200px;
+            margin: auto;
         }
 
         .carousel-wrapper {
@@ -112,8 +111,7 @@
 
         .carousel-item {
             min-width: 100%;
-            padding: 12px 32px 12px 32px;
-            height: 840px;
+            padding: 12px;
             box-sizing: border-box;
             border-radius: 24px;
         }
@@ -151,17 +149,8 @@
             cursor: pointer;
             padding: 10px 20px;
         }
-    </style>
 
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #1A0033;
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Sub-carousel Styles */
         .sub-carousel-container {
             width: 100%;
             max-width: 1200px;
@@ -173,12 +162,13 @@
 
         .sub-carousel-wrapper {
             display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
             transition: transform 0.4s ease-in-out;
         }
 
         .sub-carousel-item {
             width: calc(100% / 3);
-            min-width: calc(100% / 3);
             box-sizing: border-box;
             padding: 10px;
         }
@@ -196,6 +186,13 @@
         .sub-carousel-item p {
             color: #c1b4e2;
             font-size: 1em;
+        }
+
+        .news-listrt {
+            background-color: #4C008D;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         /* Dots Navigation */
@@ -217,93 +214,49 @@
         .dot.active {
             background-color: #fff;
         }
-    </style>
 
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #1A0033;
-            color: white;
-            margin: 0;
-            padding: 0;
+        /* Responsive Media Queries */
+        @media (max-width: 768px) {
+            .carousel-item h3 {
+                font-size: 1.2em;
+            }
+
+            .carousel-item p {
+                font-size: 0.9em;
+            }
+
+            .sub-carousel-item {
+                width: calc(100% / 2);
+            }
+
+            .prev,
+            .next {
+                font-size: 1.5em;
+            }
         }
 
-        .carousel-sub-container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 50px auto;
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-        }
+        @media (max-width: 480px) {
+            .carousel-item h3 {
+                font-size: 1em;
+            }
 
-        .carousel-sub-wrapper {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-            overflow-x: scroll;
-        }
+            .carousel-item p {
+                font-size: 0.8em;
+            }
 
-        .carousel-sub-item {
-            min-width: calc(100% / 3);
-            box-sizing: border-box;
-            padding: 10px;
-            background-color: #4C008D;
-        }
+            .sub-carousel-item {
+                width: 100%;
+            }
 
-        .carousel-sub-item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .carousel-sub-item h3 {
-            margin-top: 15px;
-            font-size: 1.5em;
-        }
-
-        .carousel-sub-item p {
-            color: #c1b4e2;
-            font-size: 1em;
-        }
-
-        /* Dots Navigation */
-        .carousel-sub-dots {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .dot {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background-color: #888;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-
-        .main-title {
-            font-family: 'Times New Roman', Times, serif;
-            padding: 5px 24px 5px 24px;
-        }
-
-        .main-text {
-            font-family: sans-serif;
-            padding: 5px 24px 5px 24px;
-        }
-
-        .dot.active {
-            background-color: #fff;
-        }
-
-        .news-listrt {
-            background-color: #4C008D;
-            border-radius: 20px;
+            .prev,
+            .next {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 
 <body>
-
 
     <div class="content">
         <!-- Carousel -->
@@ -342,19 +295,15 @@
             function renderCarousel(items) {
                 items.forEach(item => {
                     if (!item.sub_news) {
-
-
                         const carouselItem = document.createElement('div');
                         carouselItem.className = 'carousel-item';
                         carouselItem.innerHTML = `
                         <div class="main-title">
-                         
                             <h3>${item?.title}</h3>
                             <p class="main-text">${item?.text}</p>
                             <div class="article-image">
-                               <a href=${item.news_url}>   <img class="img-c" src="${item.image_url}" alt="Cloud Mining Image"> <a/>
+                               <a href=${item.news_url}><img class="img-c" src="${item.image_url}" alt="Cloud Mining Image"></a>
                             </div>
-                            
                         </div>
                     `;
                         carousel.appendChild(carouselItem);
@@ -366,14 +315,16 @@
 
             function renderNestedNews(items) {
                 items.forEach(item => {
-                    let news = document.createElement('div');
-                    news.innerHTML = `
+                    if (item?.sub_news) {
+                        let news = document.createElement('div');
+                        news.innerHTML = `
                         <h1>${item?.sub_news ? item?.source_name : ""}</h1>
-                        <div class=news-listrt>
+                        <div class="news-listrt">
                         ${item?.sub_news ? renderNewsList(item?.sub_news) : ""}
                         </div>
                     `;
-                    newsList.appendChild(news);
+                        newsList.appendChild(news);
+                    }
                 });
             }
 
@@ -381,57 +332,49 @@
                 const container = document.createElement('div');
                 container.className = 'sub-carousel-wrapper';
                 items.forEach(item => {
-                    console.log(item, "ITEM")
                     let newsItem = document.createElement('div');
                     newsItem.className = 'sub-carousel-item';
                     newsItem.innerHTML = `
-                    <a  href=${item.news_url}>
-                        <img src="${item?.image_url}" alt="Cloud Mining Image">  <a/>
+                    <a href=${item.news_url}>
+                        <img src="${item?.image_url}" alt="Cloud Mining Image">
+                          </a>
                         <h5>${item?.title}</h5>
                         <p class="main-text">${item?.text}</p>
-                      
+                  
                     `;
                     container.appendChild(newsItem);
-
                 });
                 return container.outerHTML;
             }
 
             function updateCarouselPosition() {
-                if (slides && slides.length > 0) {
-                    const slideWidth = carousel.clientWidth;
-                    document.querySelector('.carousel-wrapper').style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-                }
+                const width = slides[0].clientWidth;
+                carousel.style.transform = `translateX(${-currentIndex * width}px)`;
             }
 
-            function nextSlide() {
+            document.querySelector('.next').addEventListener('click', () => {
                 if (currentIndex < slides.length - 1) {
                     currentIndex++;
                 } else {
                     currentIndex = 0;
                 }
                 updateCarouselPosition();
-            }
+            });
 
-            function prevSlide() {
+            document.querySelector('.prev').addEventListener('click', () => {
                 if (currentIndex > 0) {
                     currentIndex--;
                 } else {
                     currentIndex = slides.length - 1;
                 }
                 updateCarouselPosition();
-            }
-
-            document.querySelector('.next').addEventListener('click', nextSlide);
-            document.querySelector('.prev').addEventListener('click', prevSlide);
-
-            fetchData();
+            });
 
             window.addEventListener('resize', updateCarouselPosition);
+
+            fetchData();
         });
     </script>
-
-
 </body>
 
 </html>
