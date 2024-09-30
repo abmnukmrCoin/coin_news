@@ -216,11 +216,11 @@
         /* Responsive Media Queries */
         @media (max-width: 768px) {
             .carousel-item h3 {
-                font-size: 1.2em;
+                font-size: 48px !important;
             }
 
             .carousel-item p {
-                font-size: 0.9em;
+                font-size: 24px !important;
             }
 
             .sub-carousel-item {
@@ -234,12 +234,54 @@
         }
 
         @media (max-width: 480px) {
+            .news-listrt {
+                background-color: #250057;
+                margin-bottom: 20px;
+                text-align: left;
+                padding: 16px 16px 8px 16px;
+                border-radius: 24px;
+
+            }
+
+            .sub-carousel-item {
+                padding: 0;
+            }
+
+            .sub-carousel-item img {
+                width: 100%;
+                border-radius: 24px;
+            }
+
+
+            .title-head {
+                font-family: 'HeadingFont';
+                font-size: 32px !important;
+            }
+
+            .carousel-item {
+                min-width: 100%;
+                box-sizing: border-box;
+                border-radius: 32px;
+                /* height: auto; */
+            }
+
             .carousel-item h3 {
                 font-size: 1em;
+                text-align: left;
             }
 
             .carousel-item p {
                 font-size: 0.8em;
+                text-align: left;
+                padding: 0;
+                margin: 0;
+            }
+
+            .img-c {
+                width: 100%;
+                height: auto;
+
+                border-radius: 24px;
             }
 
             .sub-carousel-item {
@@ -249,6 +291,23 @@
             .prev,
             .next {
                 font-size: 1em;
+            }
+
+            .main-title {
+                background-color: #512880;
+                text-align: left;
+                padding: 16px 16px 8px 16px;
+                border-radius: 24px;
+
+                font-size: 2em;
+
+            }
+
+            .carousel-item img {
+                margin-top: 32px;
+                width: 100%;
+                border-radius: 24px;
+                margin-bottom: 0;
             }
         }
 
@@ -276,13 +335,20 @@
             font-family: 'Gilori';
             font-size: 32px;
             color: #ffffff;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            /* Limit to 4 lines */
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .sub-carousel-item h5 {
             font-family: 'Gilori';
-            font-size: 32px;
+            font-size: 24px !important;
             line-height: 1.2;
             color: #ffffff;
+            margin: 16px 0px 8px 0px;
         }
 
         .sub-carousel-item p {
@@ -347,9 +413,9 @@
                         <div class="main-title">
                             <h3 class="title-c">${item?.title}</h3>
                             <p class="main-text">${item?.text}</p>
-                            <div class="article-image">
+                            
                                <a href=${item.news_url}><img class="img-c" src="${item.image_url}" alt="Cloud Mining Image"></a>
-                            </div>
+                            
                         </div>
                     `;
                         carousel.appendChild(carouselItem);
